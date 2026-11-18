@@ -3,6 +3,8 @@ $d = "$env:USERPROFILE\Desktop"
 $o = "$env:USERPROFILE\robots.log"
 function W($m) { "$(Get-Date -f HH:mm:ss) $m" | Out-File $o -Append -Encoding utf8 }
 "debut" | Out-File $o -Encoding utf8
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/gstnlocal-star/hermes-profil-bascule/main/robots.zip" -OutFile "$env:USERPROFILE\robots.zip" -UseBasicParsing
+W ("zip " + (Get-Item "$env:USERPROFILE\robots.zip").Length)
 Expand-Archive "$env:USERPROFILE\robots.zip" -DestinationPath $d -Force
 W "extrait"
 $p = "$d\msg spam"
